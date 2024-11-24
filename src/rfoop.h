@@ -22,6 +22,7 @@ typedef enum Error_Status : uint8_t{
     E32_BigPacket,
     E32_BrokenGetSet,
     E32_NoPackageTime,
+    E32_OutOfLimit
 } Status;
 
 typedef enum RF_FREQ : uint8_t{

@@ -3,7 +3,7 @@
 uint8_t E32_433T30D::calculateCRC8(const uint8_t *data, const size_t& length) const {
     if(sizeof(data) + 1 > MAX_TX_BUFFER_SIZE){
         DebuggerPort->println(F("CRC8 Fonksiyonu Maksimum Paketten Büyük"));
-        return 99;
+        return E32_CrcBroken;
     }
 
     uint8_t crc = 0x00;
@@ -90,11 +90,11 @@ Status E32_433T30D::setTransmissionMode(const RF_TRANS_MODE &Mode){
 }
 
 Status E32_433T30D::setAddresses(const uint8_t &AddHigh, const uint8_t &AddLow){
-    if(!(AddHigh > MAX_FREQ_VAL || AddHigh < MIN_FREQ_VAL)){
-        return E32_FailureMode;
+    if(AddHigh > MAX_FREQ_VAL || AddHigh < MIN_FREQ_VAL){
+        return E32_OutOfLimit;
     }
-    if(!(AddLow > MAX_FREQ_VAL || AddLow < MIN_FREQ_VAL)){
-        return E32_FailureMode;
+    if(AddLow > MAX_FREQ_VAL || AddLow < MIN_FREQ_VAL){
+        return E32_OutOfLimit;
     }
 
     this->_devConfs.AddHigh = AddHigh;
@@ -103,8 +103,8 @@ Status E32_433T30D::setAddresses(const uint8_t &AddHigh, const uint8_t &AddLow){
 }
 
 Status E32_433T30D::setChannel(const RF_FREQ &channel){
-    if(!(channel > FREQ_441 || channel < FREQ_410)){
-        return E32_FailureMode;
+    if(channel > FREQ_441 || channel < FREQ_410){
+        return E32_OutOfLimit;
     }
 
     this->_devConfs.channel = channel;
