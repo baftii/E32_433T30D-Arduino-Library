@@ -223,11 +223,6 @@ private:
     Status setPinConfig(const int8_t &m0, const int8_t &m1, const int8_t &aux);
     Status setSerialBaudRateBegin() const;
     uint8_t setSerialParityBegin() const;
-    Status RFBegin(const uint8_t& HighAddress, const uint8_t& LowAddress, const uint8_t& channel, 
-                   const RF_UART_PARITY& parity, const RF_UART_BAUD& baud, const RF_AIR_DATA& airdata,
-                   const RF_TRANS_MODE& transmode, const RF_IO_MODE& IOmode, const RF_WIRELESS& wirelesswake,
-                   const RF_FEC& fecmode, const RF_TRANS_POWER& transpower);
-    Status RFStart() const;
     Status packageTimerCheck() const;
     Status tempConftoDevice();
 public:
@@ -271,4 +266,10 @@ public:
     Status setNoAuxTimeoutTime(const time_t &time);
 
     Status viewSettings() const;
+
+    Status RFBegin(const uint8_t& HighAddress, const uint8_t& LowAddress, const uint8_t& channel, 
+                   const RF_UART_PARITY& parity, const RF_UART_BAUD& baud, const RF_AIR_DATA& airdata,
+                   const RF_TRANS_MODE& transmode, const RF_IO_MODE& IOmode, const RF_WIRELESS& wirelesswake,
+                   const RF_FEC& fecmode, const RF_TRANS_POWER& transpower);
+    Status RFStart() const;
 };
